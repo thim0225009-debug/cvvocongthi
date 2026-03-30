@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Võ Công Thi | Chuyên viên tư vấn kỹ thuật Chăn nuôi - Thú y</title>
+    
+    <!-- Fonts: Playfair Display for premium headings, Plus Jakarta Sans for modern readable text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Variables */
+        :root {
+            --forest-green: #234E32;
+            --forest-green-dark: #15301E;
+            --light-gold: #D4AF37;
+            --light-gold-hover: #b8962b;
+            --cream-white: #FAF9F6;
+            --earth-brown: #6b4c3a;
+            --earth-brown-light: #9c7356;
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --glass-bg: rgba(250, 249, 246, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --glass-shadow: 0 8px 32px 0 rgba(35, 78, 50, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--cream-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--forest-green-dark);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Typography */
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--light-gold);
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: var(--forest-green);
+            padding: 1rem 5%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links li a {
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--light-gold);
+            transition: var(--transition);
+        }
+
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links li a:hover {
+            color: var(--light-gold);
+        }
+
+        /* Hero Section with Parallax */
+        .hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(21, 48, 30, 0.7), rgba(21, 48, 30, 0.8)), url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=2074&auto=format&fit=crop'); /* Modern Farm Background */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 2;
+            color: var(--text-light);
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .profile-img-container {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            padding: 5px;
+            background: linear-gradient(45deg, var(--light-gold), var(--forest-green));
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--forest-green-dark);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            letter-spacing: 2px;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--light-gold);
+            margin-bottom: 2rem;
+        }
+
+        .hero-contact {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--light-gold);
+            color: var(--forest-green-dark);
+            border: 2px solid var(--light-gold);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--light-gold);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--text-light);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-light);
+            color: var(--forest-green-dark);
+        }
+
+        /* Section Container */
+        .section-padding {
+            padding: 6rem 5%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* About Section (Glassmorphism & Premium UI) */
+        .about-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--glass-shadow);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .about-card.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .about-info-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 500;
+        }
+
+        .about-info-list i {
+            color: var(--light-gold);
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            text-align: justify;
+            margin-bottom: 1rem;
+        }
+
+        /* Experience Timeline Section */
+        #experience {
+            background-color: #f2efe9;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--forest-green);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--light-gold);
+            border: 4px solid var(--cream-white);
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left { left: 0; }
+        .right { left: 50%; }
+
+        .right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 2rem;
+            background-color: var(--cream-white);
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--forest-green);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .timeline-date {
+            color: var(--earth-brown-light);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+            color: var(--forest-green-dark);
+        }
+
+        .timeline-company {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--earth-brown);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .timeline-content ul {
+            padding-left: 1rem;
+        }
+
+        .timeline-content li {
+            position: relative;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+        
+        .timeline-content li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: -1.5rem;
+            color: var(--forest-green);
+            font-size: 0.8rem;
+            top: 4px;
+        }
+
+        /* Research Section - Parallax */
+        .research-section {
+            background-image: linear-gradient(rgba(21, 48, 30, 0.85), rgba(21, 48, 30, 0.9)), url('https://images.unsplash.com/photo-1596733430284-f7437764b1a9?q=80&w=2070&auto=format&fit=crop'); /* Animal/Science Farm background */
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+        }
+
+        .research-section .section-title, .research-section .section-title::after {
+            color: var(--light-gold);
+            background: var(--light-gold);
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .research-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: var(--transition);
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .research-card i {
+            font-size: 2rem;
+            color: var(--light-gold);
+            margin-bottom: 1rem;
+        }
+
+        .research-card h3 {
+            color: var(--cream-white);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .research-card p {
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+
+        /* Education & Skills */
+        .edu-skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .edu-card {
+            background: var(--cream-white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--forest-green);
+            margin-bottom: 2rem;
+        }
+
+        .edu-card h3 {
+            font-size: 1.4rem;
+            color: var(--forest-green-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-card .degree {
+            color: var(--earth-brown);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-group h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .skill-tag {
+            background: rgba(35, 78, 50, 0.08);
+            color: var(--forest-green-dark);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(35, 78, 50, 0.1);
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background: var(--forest-green);
+            color: var(--text-light);
+            transform: translateY(-2px);
+        }
+
+        /* Certificates & Activities */
+        .cert-act-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .list-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+            transition: var(--transition);
+        }
+        
+        .list-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transform: translateY(-5px);
+        }
+
+        .list-card h3 {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+
+        .icon-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 1.2rem;
+        }
+
+        .icon-list i {
+            color: var(--light-gold);
+            margin-top: 4px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--forest-green-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 3rem 5%;
+        }
+
+        .footer-content h2 {
+            color: var(--light-gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .footer-socials a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .footer-socials a:hover {
+            background: var(--light-gold);
+            color: var(--forest-green-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Mobile Menu Button */
+        .menu-btn {
+            display: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 992px) {
+            .about-card {
+                grid-template-columns: 1fr;
+            }
+            .edu-skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 250px;
+                background: var(--forest-green-dark);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .timeline::after {
+                left: 31px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-item::after {
+                left: 21px;
+            }
+            .right {
+                left: 0;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header id="header">
+        <a href="#" class="logo">Võ Công Thi.</a>
+        <div class="menu-btn" id="menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#about">Giới thiệu</a></li>
+            <li><a href="#experience">Kinh nghiệm</a></li>
+            <li><a href="#research">Nghiên cứu</a></li>
+            <li><a href="#education">Học vấn & Kỹ năng</a></li>
+            <li><a href="#contact">Liên hệ</a></li>
+        </ul>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="profile-img-container">
+                <!-- Sử dụng ảnh placeholder chuyên nghiệp, bạn có thể thay thế bằng link ảnh cá nhân sau -->
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop" alt="Võ Công Thi" class="profile-img">
+            </div>
+            <h1>Võ Công Thi</h1>
+            <h2>Chuyên viên tư vấn kỹ thuật Chăn nuôi - Thú y</h2>
+            <p>Gắn kết Khoa học – Sản xuất – Khách hàng</p>
+            <div class="hero-contact">
+                <a href="mailto:vocongthi9392@gmail.com" class="btn btn-primary"><i class="fas fa-envelope"></i> Gửi Email</a>
+                <a href="tel:0364764285" class="btn btn-outline"><i class="fas fa-phone-alt"></i> 0364 764 285</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section-padding" id="about">
+        <div class="container">
+            <h2 class="section-title reveal">Tóm Tắt Chuyên Môn</h2>
+            <div class="about-card reveal">
+                <div class="about-info">
+                    <ul class="about-info-list">
+                        <li><i class="fas fa-user"></i> <span>Võ Công Thi</span></li>
+                        <li><i class="fas fa-envelope"></i> <span>vocongthi9392@gmail.com</span></li>
+                        <li><i class="fas fa-phone"></i> <span>0364 764 285</span></li>
+                        <li><i class="fas fa-graduation-cap"></i> <span>Kỹ sư Chăn nuôi</span></li>
+                    </ul>
+                </div>
+                <div class="about-text">
+                    <p>
+                        Tôi là Kỹ sư Chăn nuôi tốt nghiệp Đại học Cần Thơ, với hơn 2 năm kinh nghiệm thực tế trong việc quản lý đàn heo và gia cầm quy mô lớn. 
+                    </p>
+                    <p>
+                        Tôi có năng lực tư vấn kỹ thuật, quản lý sức khỏe vật nuôi, phân tích số liệu chăn nuôi và có kinh nghiệm thực tiễn tham gia nghiên cứu khoa học. Mục tiêu của tôi là phát triển trở thành chuyên viên tư vấn kỹ thuật thú y chuyên sâu, mang lại giá trị bền vững và là cầu nối vững chắc giữa khoa học, hệ thống sản xuất và khách hàng.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="section-padding" id="experience">
+        <div class="container">
+            <h2 class="section-title reveal">Kinh Nghiệm Thực Tiễn</h2>
+            
+            <div class="timeline">
+                <!-- Job 1 -->
+                <div class="timeline-item left reveal">
+                    <div class="timeline-content">
+                        <span class="timeline-date">05/2023 – 04/2025</span>
+                        <h3 class="timeline-title">Kỹ thuật trưởng</h3>
+                        <div class="timeline-company">Công ty Cổ phần Thái Việt Corporation</div>
+                        <ul>
+                            <li>Quản lý và theo dõi 20.000 con heo choai – heo thịt từ sau cai sữa đến xuất bán.</li>
+                            <li>Lập kế hoạch chăm sóc, phòng bệnh, giám sát tăng trưởng và tối ưu năng suất đàn.</li>
+                            <li>Phân tích tình hình sức khỏe, đề xuất giải pháp kỹ thuật và phòng ngừa rủi ro dịch bệnh.</li>
+                            <li>Thực hiện báo cáo định kỳ, thuyết trình kết quả sản xuất và chỉ số kỹ thuật cho ban quản lý.</li>
+                            <li>Phối hợp nội bộ nhằm nâng cao hiệu quả vận hành trại và chất lượng đàn heo.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="timeline-item right reveal">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Thực tập sinh</span>
+                        <h3 class="timeline-title">Thực tập kỹ thuật</h3>
+                        <div class="timeline-company">Công ty Cổ phần GreenFeed Việt Nam</div>
+                        <ul>
+                            <li>Chăm sóc và theo dõi sức khỏe 55.000 con gà thịt.</li>
+                            <li>Tham gia tiêm vắc-xin, điều trị bệnh, vệ sinh và quản lý chuồng trại theo quy trình an toàn sinh học.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="timeline-item left reveal">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Thực tập sinh</span>
+                        <h3 class="timeline-title">Thực tập - Bán hàng & Truyền thông</h3>
+                        <div class="timeline-company">PETMART – Cửa hàng thú cưng</div>
+                        <ul>
+                            <li>Lập kế hoạch và triển khai nội dung Fanpage cửa hàng.</li>
+                            <li>Tư vấn sản phẩm, nắm bắt nhu cầu và chăm sóc khoảng 40 khách hàng/ngày.</li>
+                            <li>Rèn luyện kỹ năng giao tiếp, tư vấn và phân tích hành vi khách hàng.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research & Publications Section (Parallax) -->
+    <section class="section-padding research-section" id="research">
+        <div class="container">
+            <h2 class="section-title reveal" style="color: var(--light-gold);">Thành Tích & Nghiên Cứu Khoa Học</h2>
+            
+            <div class="research-grid">
+                <!-- Card 1 -->
+                <div class="research-card reveal">
+                    <i class="fas fa-microscope"></i>
+                    <h3>Bài báo khoa học Quốc tế (2023)</h3>
+                    <p><strong>Tác giả:</strong> Ho Thieu Khoi, Vo Cong Thi et al.</p>
+                    <p>"Effect of difference extended boar semen quality in the long-term storage." <em>JAHST, 292, 19–23.</em></p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="research-card reveal">
+                    <i class="fas fa-book-journal-whills"></i>
+                    <h3>Tạp chí Khoa học ĐH Cần Thơ</h3>
+                    <p><strong>Tác giả:</strong> Khôi, H. T., Thi, V. C., Hậu, N. T. Á., & Đồ, H. Q.</p>
+                    <p>"Ảnh hưởng của các giống đực đến năng suất sinh sản và tăng trưởng heo con."</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="research-card reveal">
+                    <i class="fas fa-book-journal-whills"></i>
+                    <h3>Tạp chí Khoa học ĐH Cần Thơ</h3>
+                    <p><strong>Tác giả:</strong> Khôi, H. T., Thi, V. C., Hậu, N. T. Á., & Đồ, H. Q.</p>
+                    <p>"So sánh đặc điểm sinh sản và tăng trưởng giữa các tổ hợp giống heo."</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="research-card reveal">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>Báo cáo tại Hội nghị Quốc tế</h3>
+                    <p><strong>Selected Oral Presentation, ICAS 2026</strong></p>
+                    <p>"Comparison of the effects of storage temperatures at 4°C, 17°C, and 25°C on boar sperm quality under in vitro conditions"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Skills -->
+    <section class="section-padding" id="education">
+        <div class="container">
+            <h2 class="section-title reveal">Học Vấn & Kỹ Năng</h2>
+            
+            <div class="edu-skills-container">
+                <!-- Education Left Side -->
+                <div class="education-part reveal">
+                    <div class="edu-card">
+                        <span class="timeline-date">2019 - 2023</span>
+                        <h3>Đại học Cần Thơ</h3>
+                        <div class="degree">Kỹ sư Chăn nuôi</div>
+                        <p>Đào tạo chuyên sâu về kỹ thuật chăn nuôi, quản lý dịch bệnh, dinh dưỡng và quản trị trang trại hiện đại.</p>
+                    </div>
+                </div>
+
+                <!-- Skills Right Side -->
+                <div class="skills-part reveal">
+                    <div class="skills-group">
+                        <h3><i class="fas fa-tools" style="color: var(--light-gold);"></i> Kỹ Năng Chuyên Môn (Hard Skills)</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Kiến thức chăn nuôi - thú y</span>
+                            <span class="skill-tag">Phân tích năng suất vật nuôi</span>
+                            <span class="skill-tag">Đánh giá sức khỏe đàn</span>
+                            <span class="skill-tag">Tư vấn khách hàng kỹ thuật</span>
+                            <span class="skill-tag">Thiết kế Canva</span>
+                            <span class="skill-tag">Chỉnh sửa Video (CapCut)</span>
+                        </div>
+                    </div>
+
+                    <div class="skills-group">
+                        <h3><i class="fas fa-users" style="color: var(--light-gold);"></i> Kỹ Năng Mềm (Soft Skills)</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Tinh thần trách nhiệm cao</span>
+                            <span class="skill-tag">Khả năng tự học</span>
+                            <span class="skill-tag">Giao tiếp tự tin</span>
+                            <span class="skill-tag">Tư vấn rõ ràng</span>
+                            <span class="skill-tag">Làm việc nhóm hiệu quả</span>
+                            <span class="skill-tag">Phối hợp nội bộ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates & Activities -->
+    <section class="section-padding" style="background-color: #f2efe9;" id="certificates">
+        <div class="container">
+            <h2 class="section-title reveal">Chứng Chỉ & Hoạt Động</h2>
+            
+            <div class="cert-act-grid">
+                <!-- Certificates -->
+                <div class="list-card reveal">
+                    <h3><i class="fas fa-certificate" style="color: var(--forest-green); margin-right: 10px;"></i> Chứng Chỉ</h3>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-check-circle"></i> Bằng Kỹ sư Chăn nuôi – Đại học Cần Thơ</li>
+                        <li><i class="fas fa-check-circle"></i> Chứng chỉ Tiếng Anh B1 VSTEP</li>
+                        <li><i class="fas fa-check-circle"></i> Chứng chỉ Tin học ứng dụng</li>
+                        <li><i class="fas fa-check-circle"></i> Chứng chỉ Nghiệp vụ sư phạm</li>
+                    </ul>
+                </div>
+
+                <!-- Activities -->
+                <div class="list-card reveal">
+                    <h3><i class="fas fa-hands-helping" style="color: var(--forest-green); margin-right: 10px;"></i> Hoạt Động Cộng Đồng</h3>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-heart"></i> Đội viên Thanh niên xung kích – ĐH Cần Thơ</li>
+                        <li><i class="fas fa-heart"></i> Hỗ trợ tân sinh viên nhập học</li>
+                        <li><i class="fas fa-heart"></i> Hiến máu nhân đạo hằng năm</li>
+                        <li><i class="fas fa-heart"></i> Tham gia Chiến dịch Xuân Tình Nguyện, hỗ trợ trại trẻ mồ côi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact">
+        <div class="container footer-content">
+            <h2>Võ Công Thi</h2>
+            <p>Chuyên viên tư vấn kỹ thuật Chăn nuôi - Thú y</p>
+            
+            <div class="footer-socials">
+                <a href="mailto:vocongthi9392@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="tel:0364764285" title="Điện thoại"><i class="fas fa-phone-alt"></i></a>
+                <!-- Thêm link Facebook/LinkedIn vào # nếu cần -->
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+
+            <p style="font-size: 0.9rem; color: #aaa; margin-top: 2rem;">
+                &copy; 2026 Võ Công Thi Portfolio. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Thuần -->
+    <script>
+        // Sticky Header & Active Menu
+        const header = document.getElementById('header');
+        const menuBtn = document.getElementById('menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Đóng menu khi click vào link trên mobile
+        document.querySelectorAll('.nav-links li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Scroll Reveal Animations
+        const reveals = document.querySelectorAll('.reveal');
+
+        function revealOnScroll() {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100;
+
+            reveals.forEach(reveal => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        // Trigger once on load
+        revealOnScroll();
+
+        // Timeline Scroll Animation
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        
+        function revealTimeline() {
+            const windowHeight = window.innerHeight;
+            timelineItems.forEach(item => {
+                const elementTop = item.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    item.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', revealTimeline);
+        revealTimeline();
+    </script>
+</body>
+</html>
